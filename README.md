@@ -915,6 +915,93 @@ Sass предоставляет множество встроенных функ
 
 ---
 
+# Продвинутые CSS техники и оптимизация
+
+## Продвинутые техники
+
+### Aspect Ratio
+```css
+/* Старый способ - padding hack */
+.old { padding-top: 56.25%; }
+
+/* Современный способ */
+.new { aspect-ratio: 16 / 9; }
+```
+
+### CSS Shapes
+```css
+.shape {
+  float: left;
+  shape-outside: circle();
+  clip-path: circle();
+}
+```
+
+### CSS Clip Path
+```css
+.circle { clip-path: circle(); }
+.polygon { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+```
+
+### CSS Scroll Snap
+```css
+.container {
+  scroll-snap-type: x mandatory;
+  overflow-x: scroll;
+}
+.item { scroll-snap-align: start; }
+```
+
+### CSS Houdini
+```css
+@property --color {
+  syntax: "";
+  inherits: false;
+  initial-value: blue;
+}
+```
+
+## Оптимизация производительности
+
+### will-change
+```css
+/* Применять перед анимацией */
+.element { will-change: transform; }
+/* Удалять после */
+.element { will-change: auto; }
+```
+
+### contain
+```css
+.component {
+  contain: layout style paint; /* Изоляция */
+  contain: strict; /* Полная изоляция */
+}
+```
+
+### content-visibility
+```css
+.section {
+  content-visibility: auto; /* Ленивый рендеринг */
+  contain-intrinsic-size: 300px 200px;
+}
+```
+
+### CSS Containment
+```css
+.optimized {
+  contain: content;
+  content-visibility: auto;
+  contain-intrinsic-height: auto 6rem;
+}
+```
+
+## Результаты оптимизации
+- **will-change**: устраняет лаги анимаций
+- **contain**: изолирует компоненты
+- **content-visibility**: ускоряет загрузку на ~80%
+- **aspect-ratio**: заменяет padding hack
+
 ## Оптимизация производительности
 
 ### will-change  
